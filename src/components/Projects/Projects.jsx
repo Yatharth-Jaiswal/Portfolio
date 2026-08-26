@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { projectsData } from '../../data/projectsData';
 import { sounds } from '../../utils/audio';
+import { getAssetUrl } from '../../utils/helpers';
 import { ExternalLink, ArrowRight, X, Cpu, Layers, Sparkles } from 'lucide-react';
 import './Projects.css';
 
@@ -60,13 +61,14 @@ export default function Projects({ onSelectProject }) {
                 {/* Project Image Frame */}
                 <div className="project-image-frame">
                   <img 
-                    src={project.image} 
+                    src={getAssetUrl(project.image)} 
                     alt={project.title} 
                     className="project-screenshot-img" 
                     loading="lazy"
                     onError={(e) => {
-                      if (project.fallbackImage && e.currentTarget.src !== project.fallbackImage) {
-                        e.currentTarget.src = project.fallbackImage;
+                      const fallback = getAssetUrl(project.fallbackImage);
+                      if (fallback && e.currentTarget.src !== fallback) {
+                        e.currentTarget.src = fallback;
                       }
                     }}
                   />
