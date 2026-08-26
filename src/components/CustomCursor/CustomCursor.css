@@ -1,0 +1,112 @@
+.custom-cursor-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  transition: opacity 0.2s ease;
+}
+
+.custom-cursor-root.is-hidden {
+  opacity: 0;
+}
+
+/* Center precise dot */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.12s ease, opacity 0.15s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-dot.is-active {
+  transform: scale(0.6);
+  background-color: #ffffff;
+}
+
+.cursor-dot.is-hovered {
+  opacity: 0.35;
+  background-color: var(--accent-gold);
+}
+
+/* High frequency follower ring */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              backdrop-filter 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-ring.is-hovered {
+  border-color: var(--accent-gold);
+  background-color: rgba(200, 157, 71, 0.08);
+}
+
+.cursor-ring.is-active {
+  transform: scale(0.85);
+}
+
+.cursor-ring.variant-link {
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
+  border-color: var(--accent-gold);
+  background-color: rgba(200, 157, 71, 0.1);
+}
+
+.cursor-ring.variant-view,
+.cursor-ring.variant-open,
+.cursor-ring.variant-copy {
+  width: 72px;
+  height: 72px;
+  margin-top: -36px;
+  margin-left: -36px;
+  border-color: var(--accent-gold);
+  background-color: rgba(200, 157, 71, 0.92);
+  backdrop-filter: blur(4px);
+}
+
+.cursor-ring.variant-view .cursor-text,
+.cursor-ring.variant-open .cursor-text,
+.cursor-ring.variant-copy .cursor-text {
+  color: #0d1215;
+  font-weight: 700;
+}
+
+.cursor-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  pointer-events: none;
+}

@@ -1,0 +1,136 @@
+.education-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.education-container {
+  width: 100%;
+}
+
+.education-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.education-card {
+  border: 1px solid var(--border-subtle);
+  background: rgba(18, 24, 28, 0.35);
+  padding: 24px 28px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.education-card:hover,
+.education-card.is-selected {
+  border-color: var(--border-medium);
+  background: rgba(20, 27, 32, 0.65);
+  transform: translateX(6px) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(200, 157, 71, 0.06);
+}
+
+.education-card.is-selected {
+  border-left: 2px solid var(--accent-gold);
+}
+
+/* Card Header */
+.edu-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-ultra-subtle);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.edu-period-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-header-icon {
+  color: var(--accent-gold);
+}
+
+.edu-period-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+}
+
+.edu-status-badge {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  border: 1px solid rgba(200, 157, 71, 0.3);
+  padding: 2px 6px;
+  background: rgba(200, 157, 71, 0.05);
+}
+
+.edu-location-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+}
+
+/* Title Block */
+.edu-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edu-degree-title {
+  font-family: var(--font-sans);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.education-card.is-selected .edu-degree-title {
+  color: var(--accent-gold);
+}
+
+.edu-institution-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.institution-icon {
+  color: var(--accent-gold);
+}
+
+.edu-institution-name {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.institution-sep {
+  color: var(--border-medium);
+}
+
+.edu-specialization-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-gold);
+  letter-spacing: 0.12em;
+}

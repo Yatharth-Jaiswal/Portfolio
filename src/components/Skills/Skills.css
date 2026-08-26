@@ -1,0 +1,410 @@
+.skills-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skills-interactive-container {
+  display: grid;
+  grid-template-columns: 1.05fr 36px 0.95fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Left Column: Categorized Groups */
+.skills-index-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-category-group {
+  margin-bottom: 20px;
+}
+
+.skills-category-group.tools-group {
+  margin-bottom: 0;
+}
+
+.category-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.group-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-icon {
+  color: var(--accent-gold);
+}
+
+.group-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.group-count-badge {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  border: 1px solid rgba(200, 157, 71, 0.3);
+  background: rgba(200, 157, 71, 0.05);
+  padding: 2px 6px;
+}
+
+.skills-tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tech-row-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--border-ultra-subtle);
+  background: rgba(18, 24, 28, 0.3);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-row-item:hover {
+  border-color: var(--border-medium);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateX(4px);
+}
+
+.tech-row-item.is-selected {
+  border-color: var(--accent-gold);
+  background: rgba(200, 157, 71, 0.08);
+  transform: translateX(6px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(200, 157, 71, 0.06);
+}
+
+.tech-row-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tech-row-index {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.tech-row-name {
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.tech-row-item.is-selected .tech-row-name {
+  color: var(--accent-gold);
+}
+
+.tech-row-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tech-role-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.tech-level-pill {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  background: rgba(200, 157, 71, 0.08);
+  border: 1px solid rgba(200, 157, 71, 0.3);
+  padding: 2px 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tech-level-pill.tool-pill {
+  color: #8ab4f8;
+  background: rgba(138, 180, 248, 0.08);
+  border-color: rgba(138, 180, 248, 0.3);
+}
+
+.indicator-bar {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-medium);
+  transition: all 0.2s ease;
+}
+
+.tech-row-item.is-selected .indicator-bar {
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
+}
+
+/* Center Connector Column */
+.skills-connector-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.connector-vertical-track {
+  width: 1px;
+  height: 80%;
+  background: linear-gradient(to bottom, transparent, var(--border-subtle), transparent);
+}
+
+.connector-horizontal-pulse {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+  animation: pulseConnector 3s infinite ease-in-out;
+}
+
+@keyframes pulseConnector {
+  0%, 100% { opacity: 0.2; transform: scaleX(0.4); }
+  50% { opacity: 0.9; transform: scaleX(1); }
+}
+
+/* Right Column: Clean Technical Specification Panel */
+.skills-hud-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-hud-card {
+  border: 1px solid var(--border-medium);
+  background: rgba(18, 24, 28, 0.55);
+  backdrop-filter: blur(10px);
+  padding: 28px 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills-hud-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200, 157, 71, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(200, 157, 71, 0.08);
+}
+
+.hud-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.hud-status-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-pulse-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
+  animation: blinkFast 2s infinite;
+}
+
+@keyframes blinkFast {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hud-status-text {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--accent-gold);
+}
+
+.hud-node-id {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.hud-main-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.hud-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.hud-category-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+.hud-proficiency-badge {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  color: #0d1215;
+  background: var(--accent-gold);
+  padding: 2px 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hud-tech-name {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hud-tech-desc {
+  font-size: 17.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Implementation Highlights Block */
+.hud-highlights-block {
+  border-top: 1px solid var(--border-ultra-subtle);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hud-block-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.hud-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hud-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.hud-branch-indicator {
+  font-family: var(--font-mono);
+  color: var(--accent-gold);
+  font-size: 11px;
+  user-select: none;
+}
+
+/* Deployment Pills Block */
+.hud-deployment-block {
+  border-top: 1px solid var(--border-ultra-subtle);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.hud-deployment-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hud-deploy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+}
+
+.deploy-pill-icon {
+  color: var(--accent-gold);
+}
+
+/* Footer Ribbon */
+.hud-card-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+}
+
+.hud-footer-state {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+}
+
+@media (max-width: 1024px) {
+  .skills-interactive-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .skills-connector-col {
+    display: none;
+  }
+
+  .tech-role-tag {
+    display: none;
+  }
+}

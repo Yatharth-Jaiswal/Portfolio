@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette - Reference Dark Engineering Aesthetic */
+  --bg-primary: #0d1215;
+  --bg-secondary: #11171a;
+  --bg-surface: #141c20;
+  --bg-surface-elevated: #182228;
+  --bg-translucent: rgba(13, 18, 21, 0.85);
+
+  /* Borders & Lines */
+  --border-ultra-subtle: rgba(255, 255, 255, 0.04);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-bright: rgba(255, 255, 255, 0.35);
+
+  /* Gold / Yellow Accent */
+  --accent-gold: #c89d47;
+  --accent-gold-light: #dfb75c;
+  --accent-gold-dim: rgba(200, 157, 71, 0.15);
+  --accent-gold-glow: rgba(200, 157, 71, 0.35);
+
+  /* Typography Colors */
+  --text-primary: #e6ebef;
+  --text-secondary: #9aa7b1;
+  --text-muted: #64737d;
+  --text-faint: #39454c;
+
+  /* Font Families */
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacings & Layout */
+  --max-width: 1280px;
+  --header-height: 64px;
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Global */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-gold);
+  color: #000;
+}
+
+/* Utility Typography */
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.tracking-widest-technical {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.tracking-ultra-wide {
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.tracking-title {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Subtle Geometric Grid & Crosshairs Overlay (ambient) */
+.ambient-tech-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* Technical Crosshair Marks */
+.crosshair-tl, .crosshair-tr, .crosshair-bl, .crosshair-br {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  z-index: 2;
+}
+.crosshair-tl {
+  top: 16px;
+  left: 16px;
+  border-top: 1px solid var(--border-medium);
+  border-left: 1px solid var(--border-medium);
+}
+.crosshair-tr {
+  top: 16px;
+  right: 16px;
+  border-top: 1px solid var(--border-medium);
+  border-right: 1px solid var(--border-medium);
+}
+.crosshair-bl {
+  bottom: 16px;
+  left: 16px;
+  border-bottom: 1px solid var(--border-medium);
+  border-left: 1px solid var(--border-medium);
+}
+.crosshair-br {
+  bottom: 16px;
+  right: 16px;
+  border-bottom: 1px solid var(--border-medium);
+  border-right: 1px solid var(--border-medium);
+}
+
+/* Section Containers */
+.section-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 120px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .section-wrapper {
+    padding: 80px 16px;
+  }
+}
+
+/* Section Header Minimalist Technical Pattern with Scroll Reveal */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-header.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.section-header.is-revealed .section-header-tag {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-header-title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.section-header.is-revealed .section-header-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-subtle), transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.section-header.is-revealed .section-header-line {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 36px;
+  }
+
+  .section-header-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    width: 100%;
+    white-space: nowrap;
+    order: 1;
+  }
+
+  .section-header-title {
+    font-size: clamp(20px, 5.5vw, 24px);
+    letter-spacing: 0.12em;
+    order: 2;
+  }
+
+  .section-header-line {
+    flex: 1;
+    min-width: 24px;
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    gap: 5px 10px;
+    margin-bottom: 30px;
+  }
+
+  .section-header-tag {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .section-header-title {
+    font-size: 19px;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Interactive Button Primitives */
+.btn-technical {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 24px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-technical::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: rotate(25deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.btn-technical:hover {
+  border-color: var(--accent-gold);
+  color: #0d1215;
+  background: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-gold-glow);
+}
+
+.btn-technical:hover::after {
+  opacity: 1;
+  transform: rotate(25deg) translateX(350%);
+}
+
+.btn-technical:active {
+  transform: translateY(0);
+}
+
+.btn-technical.gold-variant {
+  background: var(--accent-gold);
+  color: #0d1215;
+  font-weight: 600;
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn-technical.gold-variant:hover {
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold-light);
+  color: #0d1215;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 25px var(--accent-gold-glow);
+}
+
+/* Focus state for accessibility */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 1px solid var(--accent-gold);
+  outline-offset: 2px;
+}

@@ -1,0 +1,31 @@
+.particle-network-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Subtle radial vignette to soften the edges and focus center composition */
+.particle-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 35%,
+    rgba(13, 18, 21, 0.45) 80%,
+    rgba(13, 18, 21, 0.85) 100%
+  );
+  pointer-events: none;
+}
